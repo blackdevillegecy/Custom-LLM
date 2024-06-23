@@ -1,7 +1,8 @@
 import torch
 from torch import nn
 from cllm.activation.Softmax import Softmax
-from cllm.utils import BMM, Embedding, _matmul_2d_3d
+from cllm.utils import BMM, _matmul_2d_3d
+from cllm.embedding.TokenEmbedding import TokenEmbedding
 
 SEED = 42
 torch.manual_seed(SEED)
@@ -57,12 +58,13 @@ class SelfAttention(nn.Module):
 if __name__=='__main__':
     sentence = "For me, you are the priority no matter what, is that okay"
     dc = {s:i for i,s in enumerate(sorted(sentence.replace(',', '').split()))}
-    sentence_int = torch.tensor([dc[s] for s in sentence.replace(',', '').split()])
-    # print (sentence_int)
+    tokens = torch.tensor([dc[s] for s in sentence.replace(',', '').split()])
+    # print (tokens)
 
     vocab_size = 50000
-    embed = Embedding(vocab_size, 3)
-    embed_sentence = embed(sentence_int).detach()
+    embed_dim = 3
+    embed = TokenEmbedding(vocab_size, embed_dim)
+    embed_sentence = embed(tokens).detach()
 
     # print(embed_sentence)
     # print(embed_sentence[1])

@@ -1,7 +1,8 @@
 import torch 
 from torch import nn
 from cllm.activation.Softmax import Softmax
-from cllm.utils import BMM, Embedding, _matmul_2d_3d
+from cllm.utils import BMM, _matmul_2d_3d
+from cllm.embedding import TokenEmbedding
 
 SEED = 42
 torch.manual_seed(SEED)
@@ -55,7 +56,7 @@ if __name__=='__main__':
     sentence_int = torch.tensor([dc[s] for s in sentence.replace(',', '').split()])
 
     vocab_size = 50000
-    embed = Embedding(vocab_size, 3)
+    embed = TokenEmbedding(vocab_size, 3)
     embed_sentence = embed(sentence_int).detach()
 
     x1 = embed_sentence
