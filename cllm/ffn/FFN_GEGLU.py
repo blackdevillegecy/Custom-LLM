@@ -29,6 +29,6 @@ if __name__ == '__main__':
     dim=4
     multiplier=256
     obj = FeedForwardGEGLU(dim, multiplier)
-    x = torch.randn(2, dim)
+    x = torch.randn(3, 2, dim)
     ge = obj.forward(x)
     print(ge)

@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 import math
-from TokenEmbedding import TokenEmbedding
+from cllm.embedding.TokenEmbedding import TokenEmbedding
 
 class StandardPositionEmbedding(nn.Module):
     def __init__(self, 
@@ -34,9 +34,8 @@ class StandardPositionEmbedding(nn.Module):
                     posEmbedding[i][j] = torch.sin(pos[i][j//2])
                 else:
                     posEmbedding[i][j] = torch.cos(pos[i][j//2])
-        print(posEmbedding.shape)
         posEmbedding.unsqueeze(0)
-        x = x + posEmbedding[:, :x.size(1)].requires_grad_(False)
+        x = x + posEmbedding.requires_grad_(False)
         self.drop(x)
         return x
 
@@ -48,6 +47,7 @@ if __name__=='__main__':
     tokens = torch.tensor([dc[s] for s in sentence.replace(',', '').split()])
     vocab_size = 50000
     embed_dim = 128
+    print(tokens.shape)
     te = TokenEmbedding(vocab_size, embed_dim)
     token_embeddings = te.forward(tokens)
     print(token_embeddings)

@@ -19,7 +19,7 @@ class Softmax(nn.Module):
 ## EXPERIMENT ##
 if __name__=='__main__':
     dim=0
-    x = torch.randn(2, 3)
+    x = torch.randn(2, 3, 4)
     obj = Softmax(dim=dim)
     ans = obj.forward(x)
     print(ans)

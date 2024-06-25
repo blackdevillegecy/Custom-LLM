@@ -1,5 +1,7 @@
 import torch
 from torch import nn
+from StandardPositionEmbedding import StandardPositionEmbedding
+from SelfAttention import SelfAttention
 
 SEED=42
 torch.manual_seed(SEED)
@@ -30,7 +32,23 @@ class TokenEmbedding(nn.Module):
 if __name__=='__main__':
     vocab_size = 1000
     embed_dim = 128
-    x = torch.randint(0, 10, size=(3, 4))
+    # sentences = [ "Sun rises, birds sing, flowers bloom, children play", "Stars twinkle, moon glows, night falls, dreams come"]
+    seq_len = 4
+    batch_size = 3
+    x = torch.randint(0, 10, size=(batch_size, seq_len))
+    print("x", x)
+    
     obj = TokenEmbedding(vocab_size, embed_dim)
     em = obj.forward(x)
-    print(em)
+    print("token embedding\n", em)
+
+    spe = StandardPositionEmbedding(seq_len, embed_dim, batch_size)
+    fem = spe.forward(em)
+
+    print("token + position embedding\n", fem)
+
+    se = SelfAttention(fem.shape[2], 4, 4, 6, batch=True)
+    afterse = se.forward(fem)
+
+    print("after self attention\n", afterse)
+
