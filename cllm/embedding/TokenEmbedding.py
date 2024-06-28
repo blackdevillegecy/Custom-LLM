@@ -1,7 +1,7 @@
 import torch
 from torch import nn
-from StandardPositionEmbedding import StandardPositionEmbedding
-from SelfAttention import SelfAttention
+# from cllm.embedding.StandardPositionEmbedding import StandardPositionEmbedding
+# from cllm.attention.SelfAttention import SelfAttention
 
 SEED=42
 torch.manual_seed(SEED)
@@ -42,13 +42,13 @@ if __name__=='__main__':
     em = obj.forward(x)
     print("token embedding\n", em)
 
-    spe = StandardPositionEmbedding(seq_len, embed_dim, batch_size)
-    fem = spe.forward(em)
+    # spe = StandardPositionEmbedding(seq_len, embed_dim, batch_size)
+    # fem = spe.forward(em)
 
-    print("token + position embedding\n", fem)
+    # print("token + position embedding\n", fem)
 
-    se = SelfAttention(fem.shape[2], 4, 4, 6, batch=True)
-    afterse = se.forward(fem)
+    # se = SelfAttention(fem.shape[2], 4, 4, 6, batch=True)
+    # afterse = se.forward(fem)
 
-    print("after self attention\n", afterse)
+    # print("after self attention\n", afterse)
 

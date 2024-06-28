@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from cllm.activation.Softmax import Softmax
 from cllm.utils import BMM, _matmul_2d_3d
-from cllm.embedding import TokenEmbedding
+from cllm.embedding.TokenEmbedding import TokenEmbedding
 
 SEED = 42
 torch.manual_seed(SEED)

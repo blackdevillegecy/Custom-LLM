@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 import numpy as np
-import constants
+import cllm.constants as constants
 
 torch.manual_seed(constants.SEED)
 

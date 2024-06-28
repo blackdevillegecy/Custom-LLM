@@ -3,7 +3,7 @@ from torch import nn
 import numpy as np
 
 class FeedForwardSwiGLU(nn.Module):
-    def __init__(self, dim: int, multiplier: int) -> None: 
+    def __init__(self, dim: int, multiplier: int = 256) -> None: 
         super(FeedForwardSwiGLU, self).__init__()
         hidden = multiplier * ((dim + multiplier - 1) // multiplier)
 

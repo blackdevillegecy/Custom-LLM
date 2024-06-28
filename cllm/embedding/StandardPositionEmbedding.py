@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 import math
-from cllm.embedding.TokenEmbedding import TokenEmbedding
+# from cllm.embedding.TokenEmbedding import TokenEmbedding
 
 class StandardPositionEmbedding(nn.Module):
     def __init__(self, 
@@ -42,18 +42,18 @@ class StandardPositionEmbedding(nn.Module):
 
 ## EXPERIMENT ##
 if __name__=='__main__':
-    sentence = "Hello, my name is Ayush, how are you"
-    dc = {s:i for i,s in enumerate(sorted(sentence.replace(',', '').split()))}
-    tokens = torch.tensor([dc[s] for s in sentence.replace(',', '').split()])
-    vocab_size = 50000
-    embed_dim = 128
-    print(tokens.shape)
-    te = TokenEmbedding(vocab_size, embed_dim)
-    token_embeddings = te.forward(tokens)
-    print(token_embeddings)
-    seq_len = token_embeddings.shape[0]
-    spe = StandardPositionEmbedding(seq_len, embed_dim, 10000.0)
-    final_embeddings = spe.forward(token_embeddings)
-    print(final_embeddings)
-
+    # sentence = "Hello, my name is Ayush, how are you"
+    # dc = {s:i for i,s in enumerate(sorted(sentence.replace(',', '').split()))}
+    # tokens = torch.tensor([dc[s] for s in sentence.replace(',', '').split()])
+    # vocab_size = 50000
+    # embed_dim = 128
+    # print(tokens.shape)
+    # te = TokenEmbedding(vocab_size, embed_dim)
+    # token_embeddings = te.forward(tokens)
+    # print(token_embeddings)
+    # seq_len = token_embeddings.shape[0]
+    # spe = StandardPositionEmbedding(seq_len, embed_dim, 10000.0)
+    # final_embeddings = spe.forward(token_embeddings)
+    # print(final_embeddings)
+    pass
         
